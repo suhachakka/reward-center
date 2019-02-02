@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymwleag.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Reward center</h1>
+
+<form method="post" style="max-width:300px;" th:object="${user}">
+<div class="form-group">
+    <label th:for="name">First name</label>
+    <input type ="text" class="form-control"  th:field="*{name}" />
+    <span th:errors="*{name}" class="error"></span>
+</div>
+
+    <div class="form-group">
+        <label th:for="lastName">Last name</label>
+        <input  type= "text" class="form-control" th:field="*{lastName}" />
+        <span th:errors="*{lastName}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="password">Password</label>
+        <input type= "password" class="form-control" th:field="*{password}" />
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="confirm">Confirm Password</label>
+        <input type= "password" class="form-control" th:field ="*{confirm}" />
+        <span th:errors="*{confirm}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="email">Email</label>
+        <input type = "email" class="form-control" th:field ="*{email}" />
+        <span th:errors="*{email}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="phone">Phone</label>
+        <input type = "text" class="form-control" th:field ="*{phone}" />
+        <span th:errors="*{phone}" class="error"></span>
+    </div>
+    <input type = "submit" style= "color:green;" value = "Create Account/Sign up" />
+
+</form>
+</body>
+</html>

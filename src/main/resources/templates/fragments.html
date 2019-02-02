@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text ="${title}">Reward Center</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class = "container">
+ <nav th:fragment="navigation">
+     <a href ="/offer">Offers</a>|
+     <a href ="/store">Stores</a>|
+     <a href="/category">Categories</a>
+ </nav>
+
+</body>
+</html>

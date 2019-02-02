@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body class = "container">
+<h1 th:text="${title}">Default title</h1>
+
+<form method="post" action ="/signin" style="max-width:600px;" th:object="${user}">
+    <div class="form-group" >
+        <label th:for="email">Email</label>
+        <input type="email" class="form-control" th:field="*{email}"/>
+        <span th:errors="*{email}" class="error"></span>
+    </div>
+
+    <div class="form-group" >
+        <label th:for="phone">Phone</label>
+        <input type="text" class="form-control" th:field="*{phone}"/>
+        <span th:errors="*{phone}" class="error"></span>
+    </div>
+
+    <div class="form-group" >
+        <label th:for="password">Password</label>
+        <input type = "password" class="form-control" th:field="*{password}"/>
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+    <input type ="submit" value="Sign in"/>
+
+</form>
+</body>
+</html>
