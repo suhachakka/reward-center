@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container py-5">
+    <!--<h4 class="text-uppercase text-center">your card information </h4>-->
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h4 class="text-uppercase text-center" th:text="${title}">
+            </h4></div>
+        <div class="card-body">
+            <form method="post" action="/category/edit">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label><b>Category Name</b></label>
+                        <input type="text" placeholder="Enter your Category Name"
+                               class="form-control" th:field="*{category.categoryName}"/>
+                        <span th:errors="*{category.categoryName}" class="error"></span>
+
+                    </div>
+                </div>
+                <br/>
+                <div class="form-row">
+                    <div>
+                        <input type="checkbox" id="deptA" name="deptAllowed" value="Applicable"
+                               th:field="*{category.deptAllowed}"/>
+                        <input name="_deptA" type="hidden" value="on" />
+                        <label for="deptA" ><b>Department Allowed</b></label>
+                        <span th:errors="*{category.deptAllowed}" class="error"></span>
+
+                    </div></div>
+                <div style="margin-top:15px;">
+                    <input type="hidden"  name="categoryId" th:value="${categoryId}"/>
+
+                    <!--<button type="submit" class="btn btn-danger rounded-0" value="cancel">Cancel</button>-->
+                    <button type="submit" class="btn btn-primary rounded-0"
+                            value="Edit category">Edit Category</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

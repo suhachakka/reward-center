@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Reward center</h1>
+
+<form method="post" style="max-width:300px;" action="/user/edit">
+    <div class="form-group">
+        <label th:for="name">First name</label>
+        <input type ="text" class="form-control" th:field="*{user.name}" />
+        <span th:errors="*{user.name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="lastName">Last name</label>
+        <input type= "text" class="form-control" th:field="*{user.lastName}" />
+        <span th:errors="*{user.lastName}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="password">Password</label>
+        <input type= "password" class="form-control" th:field="*{user.password}" />
+        <span th:errors="*{user.password}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="confirm">Confirm Password</label>
+        <input type= "password" class="form-control" th:field ="*{user.confirm}" />
+        <span th:errors="*{user.confirm}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="email">Email</label>
+        <input type = "email" class="form-control" th:field ="*{user.email}" />
+        <span th:errors="*{user.email}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="phone">Phone</label>
+        <input type = "text" class="form-control" th:field ="*{user.phone}" />
+        <span th:errors="*{user.phone}" class="error"></span>
+    </div>
+    <input type="hidden"  name="userId" th:value="${userId}"/>
+
+    <input type = "submit" class ="btn btn-primary" style= "color:green;" value = "edit" />
+
+</form>
+
+</body>
+</html>

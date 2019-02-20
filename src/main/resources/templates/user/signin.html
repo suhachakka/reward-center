@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class = "container">
-<h1 th:text="${title}">Default title</h1>
+<body class = "container" style="margin-top:30px;">
+<nav class="navbar navbar-default navbar-dark fixed-top" style="background-color: green;" >
+    <a class="navbar-brand" href="/list/base">Reward Center</a></nav>
 
-<form method="post" action ="/signin" style="max-width:600px;" th:object="${user}">
-    <div class="form-group" >
-        <label th:for="email">Email</label>
-        <input type="email" class="form-control" th:field="*{email}"/>
+    <form class= "form-container justify-content-md-center" method="post" style="max-width:460px; margin-top:150px;"
+          th:object="${signUser}">
+    <div class = "header">
+        <h2>Reward Center</h2>
+
+        <h1 th:text="${title}">Reward center</h1>
+    </div>
+
+
+    <div class="form-group row ">
+        <label th:for="email" class="col-sm-2 col-form-label" >Email/Phone</label>
+        <div class="col-sm-10">
+
+        <input type="text" id="email" class="form-control mx-sm-3" aria-describedby ="emailHelpInline"
+            th:field="*{email}"/>
+
         <span th:errors="*{email}" class="error"></span>
+
+        </div>
     </div>
 
-    <div class="form-group" >
-        <label th:for="phone">Phone</label>
-        <input type="text" class="form-control" th:field="*{phone}"/>
-        <span th:errors="*{phone}" class="error"></span>
-    </div>
+    <!--<div class="form-group row">-->
+        <!--<label th:for="inputPhone" class="col-sm-2 col-form-label">Phone</label>-->
+        <!--<div class="col-sm-10">-->
 
-    <div class="form-group" >
-        <label th:for="password">Password</label>
-        <input type = "password" class="form-control" th:field="*{password}"/>
+        <!--<input type="text" id="inputPhone" class="form-control mx-sm-3" aria-describedby="phoneHelpInline" th:field="*{phone}" />-->
+
+
+        <!--<span th:errors="*{phone}" class="error"></span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="form-group row" >
+        <label th:for="inputPassword6" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+
+        <input type = "password"  id="inputPassword6"  class="form-control mx-sm-3" aria-describedby="passwordHelpInline" th:field="*{password}" />
+
+
         <span th:errors="*{password}" class="error"></span>
-    </div>
-    <input type ="submit" value="Sign in"/>
 
-</form>
+</div>
+    </div>
+    <!--<input type ="submit" value="Sign in" style="background-color:green"/>-->
+    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary" style="float:right;">Forgot password</button>
+
+        <div><h1 th:text="${param.q}" class="error">test</h1></div>
+
+    <p>
+        Don't have an account? <a href ="/user/signup">Create One</a>
+    </p>
+    </form>
+
+
+
+    <!--<h1>My Web Page</h1>-->
+
+    <!--<p>Hello everybody!</p>-->
+
+    <!--<p>Translate this page:</p>-->
+
+    <!--<div id="google_translate_element"></div>-->
+
+    <!--<script type="text/javascript">-->
+<!--function googleTranslateElementInit() {-->
+  <!--new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');-->
+<!--}-->
+<!--</script>-->
+
+    <!--<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
+
+    <!--<p>You can translate the content of this page by selecting a language in the select box.</p>-->
+
 </body>
 </html>

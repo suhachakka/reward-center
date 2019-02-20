@@ -4,15 +4,67 @@
     <meta charset="UTF-8"/>
     <title th:text ="${title}">Reward Center</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+    <!-- This version is not working in spring boot version 2.1.2-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-<body class = "container">
- <nav th:fragment="navigation">
-     <a href ="/offer">Offers</a>|
-     <a href ="/store">Stores</a>|
-     <a href="/category">Categories</a>
- </nav>
+<body>
+<nav th:fragment="navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: green;">
+        <nav class = "container-fluid">
 
+        <a class="navbar-brand" href="/list/base">Reward Center</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/offers">offers <!--span class="sr-only">(current)</span--></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Departments">Departments </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/category/addcategory">Categories </a>
+                </li>
+                <!--<li class="nav-item dropdown">-->
+                    <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+                    <!--<div class="dropdown-menu">-->
+                        <!--<a class="dropdown-item" href="#">Action</a>-->
+                        <!--<a class="dropdown-item" href="#">Another action</a>-->
+                        <!--<a class="dropdown-item" href="#">Something else here</a>-->
+                        <!--<div class="dropdown-divider"></div>-->
+                        <!--<a class="dropdown-item" href="#">Separated link</a>-->
+                    <!--</div>-->
+                <!--</li>-->
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/card/addcard">Cards </a>
+                </li>
+
+
+                <li class="nav-item active" style="float:right">
+                    <a class="nav-link" href="/user/signup">Sign up </a></li>
+                <li class="nav-item active" >
+                    <a class="nav-link" href="/user/signin">Sign in </a></li>
+
+                <li class="nav-item active" style="float:right">
+                    <a class="nav-link" href="/user/signout">Sign out </a>
+                </li>
+                <!--<form class="form-inline my-2 my-lg-0">-->
+                    <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+                    <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+                <!--</form>-->
+
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </nav></nav>
 </body>
 </html>

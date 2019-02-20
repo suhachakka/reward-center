@@ -1,15 +1,16 @@
 package org.launchcode.rewardcenter.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.*;
 
-//@Entity
+@Entity
 public class User {
 
-//    @Id
-//    @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
 
     @NotNull
@@ -24,8 +25,8 @@ public class User {
     @Size(min=5,max=10)
     private String password;
 
-    @NotNull
-    @Size(message = "Passwords do not match")
+    @NotNull(message = "Passwords do not match")
+    @Transient
     private String confirm;
 
     @Email
@@ -33,8 +34,12 @@ public class User {
     private String email;
 
     @NotNull
-    @Size(min=3,max=10)
+    @Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}",message="phone number must be (123)456-7890 format")
+//    @Size(min=10)
     private String phone;
+
+//    @NotNull
+//    private Date DOB;
 
     public User() {
 
@@ -102,9 +107,14 @@ public class User {
         this.phone = phone;
     }
 
+
     private void checkPassword(){
         if (confirm != null && password != null && !password.equals( confirm)){
                 confirm = null;
             }
     }
-}
+
+
+
+    }
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1 th:text="${title}">Reward center</h1>
+
+    <div class="row">
+        <div class="small-3 columns">
+            <input type="text" id="txt" name="searchWord" th:text="${keyword}">
+        </div>
+
+
+        <div class="small-5 columns end">
+            <button id="button-id" type="submit">Search </button>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div
+            th:text="${keyword}">
+        </div>
+    </div>
+</body>
+</html>

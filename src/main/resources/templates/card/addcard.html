@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+
+    <div class="container py-5">
+        <!--<h4 class="text-uppercase text-center">your card information </h4>-->
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h4 class="text-uppercase text-center" th:text="${title}">
+                </h4></div>
+            <div class="card-body">
+                <form method="post" th:object="${card}">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label><b>Card Holder Name</b></label>
+                            <input type="text" placeholder="Enter your Card Name" class="form-control" th:field="*{cardName}"/>
+                            <span th:errors="*{cardName}" class="error"></span>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label><b>Card Brand</b></label>
+                            <input type="text" placeholder="Enter your Card Brand" class="form-control" th:field="*{cardBrand}"/>
+                            <span th:errors="*{cardBrand}" class="error"></span>
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label><b>Card Number</b></label>
+                            <input type="number" placeholder="Enter your Card Number" class="form-control" th:field="*{cardNumber}" />
+                            <span th:errors="*{cardNumber}" class="error"></span>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <label><b>Card Type</b></label>
+                        <input type="text" placeholder="Enter Card Type" class="form-control" th:field="*{cardType}"/>
+                            <span th:errors="*{cardType}" class="error"></span>
+
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+
+                        <div class="col-md-6">
+                            <label><b>Card Issuer</b></label>
+                            <input type="text" class="form-control" placeholder="Enter Issued Bank" th:field="*{issuedBank}">
+                            <span th:errors="*{issuedBank}" class="error"></span>
+
+                        </div>
+
+                            <div class="col-md-6">
+                                <label><b>Valid Thru</b></label>
+                                <input type="month" placeholder="Enter Month" class="form-control" th:field="*{yearMonth}"/>
+                                <span th:errors="*{yearMonth}" class="error"></span>
+
+
+                            </div></div>
+
+                    <div style="margin-top:15px;">
+                        <!--<button type="submit" class="btn btn-danger rounded-0">Cancel</button>-->
+                        <button type="submit" class="btn btn-primary rounded-0" value="Add ">Submit</button>
+                            <!--<a href ="/card/view" class ="btn btn-primary rounded-0">submit</a></div>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </body>
+
+
+</html>

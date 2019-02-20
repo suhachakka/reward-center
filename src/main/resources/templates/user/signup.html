@@ -1,45 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymwleag.org/">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container">
-<h1 th:text="${title}">Reward center</h1>
+<body class="container justify-content-center" style="margin-top:30px; margin-bottom:30px;">
 
-<form method="post" style="max-width:300px;" th:object="${user}">
-<div class="form-group">
-    <label th:for="name">First name</label>
-    <input type ="text" class="form-control"  th:field="*{name}" />
+<form class="form-container" method="post" style="max-width:400px;" th:object="${user}" >
+    <div class = "header">
+        <h2>Reward Center</h2>
+
+    <h1 th:text="${title}">Reward center</h1>
+    </div>
+    <div class="form-group row">
+    <label th:for="name" class="col-sm-4 col-form-label">First name</label>
+        <div class="col-sm-8">
+            <input type ="text" class="form-control mx-sm-6" id ="name" th:field="*{name}" />
     <span th:errors="*{name}" class="error"></span>
-</div>
+        <!--<small id="emailHelpInline" class="text-muted"></small>-->
+        </div>
+    </div>
 
-    <div class="form-group">
-        <label th:for="lastName">Last name</label>
-        <input  type= "text" class="form-control" th:field="*{lastName}" />
+    <div class="form-group row">
+        <label th:for="lastName" class="col-sm-4 col-form-label">Last name</label>
+        <div class="col-sm-8">
+
+            <input type= "text" class="form-control mx-sm-6" th:field="*{lastName}" />
         <span th:errors="*{lastName}" class="error"></span>
     </div>
-
-    <div class="form-group">
-        <label th:for="password">Password</label>
-        <input type= "password" class="form-control" th:field="*{password}" />
+    </div>
+    <div class="form-group row">
+        <label th:for="password" class="col-sm-4 col-form-label">Password</label>
+        <div class="col-sm-8">
+            <input type= "password" class="form-control mx-sm-6" th:field="*{password}" />
         <span th:errors="*{password}" class="error"></span>
     </div>
-
-    <div class="form-group">
-        <label th:for="confirm">Confirm Password</label>
-        <input type= "password" class="form-control" th:field ="*{confirm}" />
+    </div>
+    <div class="form-group row">
+        <label th:for="confirm" class="col-sm-4 col-form-label">Confirm Password</label>
+        <div class="col-sm-8">
+            <input type= "password" class="form-control mx-sm-6" th:field ="*{confirm}" /></div>
         <span th:errors="*{confirm}" class="error"></span>
     </div>
 
-    <div class="form-group">
-        <label th:for="email">Email</label>
-        <input type = "email" class="form-control" th:field ="*{email}" />
+    <div class="form-group row">
+        <label th:for="email" class="col-sm-4 col-form-label">Email</label>
+        <div class="col-sm-8">
+            <input type = "email" class="form-control mx-sm-6" th:field ="*{email}" />
         <span th:errors="*{email}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="phone">Phone</label>
-        <input type = "text" class="form-control" th:field ="*{phone}" />
+    </div></div>
+    <div class="form-group row">
+        <label th:for="phone" class="col-sm-4 col-form-label">Phone</label>
+        <div class="col-sm-8">
+            <input type = "text" class="form-control mx-sm-6" th:field ="*{phone}" />
         <span th:errors="*{phone}" class="error"></span>
-    </div>
-    <input type = "submit" style= "color:green;" value = "Create Account/Sign up" />
+    </div></div>
+    <!--<input type = "submit" style= "color:green;" value = "Create Account/Sign up" />-->
+    <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+
+
+    <p th:text="${param.q}" class="error">Test1</p>
+    <!--<p th:text="${#request.getParameter('q')}" th:unless="${#request.getParameter('q')== null}" >Test</p>-->
+
+
+    <p>
+        Already a User? <a href ="/user/signin">Sign in</a>
+    </p>
+
 
 </form>
 </body>
