@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body class="container-fluid">
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container py-5">
+    <!--<h4 class="text-uppercase text-center">your card information </h4>-->
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h4 class="text-uppercase text-center" th:text="${title}">
+            </h4></div>
+        <div class="card-body">
+            <form method="post" action="/offer/edit">
+
+
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <label class="btn btn-success" th:for="card"><b>Cards</b></label>
+                        <select name="cardId" itemscope="itemscope">
+                            <option th:each="card : ${cards}"
+                                    th:field="*{offer.card}"
+                                    th:text="${card.cardNumber}"
+                                    th:value="${card.id}"
+                                th:selected="${card.id}">
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+
+                            <label class="btn btn-success"><b>CashBack</b>&nbsp;</label>
+                            <input type="number" placeholder="Enter your cash back in $ or %"
+                                   class="form-control" th:field="*{offer.cashBack}"/>
+                            <span th:errors="*{offer.cashBack}" class="error"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <label th:for="cashMode" class="btn btn-success">Cash Mode</label>
+                        <label class="btn btn-default active">
+                            <input type="radio" name="cashMode" value="%" checked="">%
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="cashMode" value="$">$
+                        </label>
+                    </div></div>
+
+
+                <div class="form-row" style="padding-top:25px;">
+                    <div class="col-md-4">
+
+                        <label class="btn btn-success"><b>Qualified Amount</b></label>
+                        <input type="number" placeholder="Enter Qualified amount" class="form-control" th:field="*{offer.qualified_amt}"/>
+                        <span th:errors="*{offer.qualified_amt}" class="error"></span></div>
+                    <div class="col-md-4">
+                        <label class="btn btn-success"><b>Expiry Date</b></label>
+                        <input type="date" placeholder="Enter your Card Number" class="form-control" th:field="*{offer.ExpiryDate}" />
+                        <span th:errors="*{offer.ExpiryDate}" class="error"></span>
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="btn btn-success" ><b>Coupon Codes</b></label>
+                        <input type="text" placeholder="Enter Coupon code" class="form-control" th:field="*{offer.CouponCode}"/>
+                        <span th:errors="*{offer.CouponCode}" class="error"></span>
+
+                    </div>
+
+                </div>
+                <div class="form-row" style = "padding:20px; box-size:5%;">
+                    <div class="col-md-4">
+                        <label class="btn btn-success" th:for="category"><b>Categories</b></label>
+                        <select name="categoryId" itemscope="itemscope">
+                            <option th:each="category : ${categories}"
+                                    th:text="${category.categoryName}"
+                                    th:value="${category.id}"
+                            th:selected="(${category.id} == ${category.id})">
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="btn btn-success" th:for="department"><b>Departments</b></label>
+                        <select name="deptId" itemscope="itemscope">
+                            <option th:each="department : ${departments}"
+                                    th:text="${department.deptName}" aria-current="page"
+                                    th:value="${department.id}">
+                                <!--th:selected="(${department.id} == ${department.id})">-->
+
+                            </option>
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div style="margin-top:15px;">
+                    <input type="hidden" name="offerId" th:value="${offerId}"/>
+
+                    <button type="submit" class="btn btn-danger rounded-0" value="close" th:value="${offerId}">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-0" value="Add ">Submit</button>
+                    <!--<a href ="/card/view" class ="btn btn-primary rounded-0">submit</a></div>-->
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>

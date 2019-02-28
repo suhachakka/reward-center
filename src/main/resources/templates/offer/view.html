@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+
+<body class="container-fluid">
+<nav th:replace="fragments :: navigation"></nav>
+<div class="card-header bg-danger text-white">
+    <h4 class="text-uppercase text-center" th:text="${title}"></h4>
+    <a href ="/offer/addoffer" class ="btn btn-primary rounded-0" value="Add">Add offer</a></div>
+
+</div>
+<table class="table table-striped table-dark" style="background-color:#A9A9A9; margin-top:0;">
+    <thead>
+    <tr>
+        <!--<th scope="col">offerId</th>-->
+        <th scope="col">Card</th>
+        <th scope="col">card Brand</th>
+        <th scope="col">Qualified Amt</th>
+        <!--<th scope="col">Mode</th>-->
+        <th scope="col">Cash Back</th>
+        <th scope="col">Expiry Date</th>
+        <th scope="col">Category</th>
+        <th scope="col">Department</th>
+        <th scope="col">Coupon Code</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <tr th:each="offer : ${offers}">
+        <!--<td th:text="${offer.id}"></td>-->
+        <td th:text="${offer.card.maskCardNumber}"></td>
+        <td th:text="${offer.card.cardBrand}"></td>
+
+        <td th:text="${offer.qualified_amt}"></td>
+        <td th:text="${offer.cashMode +' '+ offer.cashBack}"></td>
+        <!--<td th:text="${offer.cashMode}"></td>-->
+        <td th:text="${offer.ExpiryDate}"></td>
+        <td th:text="${offer.category.categoryName}"></td>
+        <td th:text="${offer.department.deptName}"></td>
+        <td th:text="${offer.CouponCode}"></td>
+        <td><a th:href="@{'/offer/edit/' + ${offer.id}}">Edit</a></td>
+        <td><a th:href="@{'/offer/delete/' + ${offer.id}}">Delete</a></td>
+    </tr>
+    </tr>
+    </tbody>
+</table>
+<!--<ul class="nav nav-pills">-->
+    <!--<li class="nav-item" th:each="i: ${#numbers.sequence(0,offer.totalPages-1)}">-->
+        <!--<a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"-->
+        <!--th:classappend="${currentPage}==${i}?'active':''"></a>-->
+    <!--</li>-->
+<!--</ul>-->
+
+
+</body>
+</html>

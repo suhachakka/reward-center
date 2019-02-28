@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+
+<body class="container-fluid">
+<nav th:replace="fragments :: navigation"></nav>
+<div class="card-header bg-danger text-white">
+    <h4 class="text-uppercase text-center" th:text="${title}"></h4>
+        <a href ="/department/addepartment" class ="btn btn-primary rounded-0">Add</a>
+</div>
+<table class="table table-striped table-dark" style="background-color:#F0E68C; color:black;">
+    <thead>
+    <tr>
+        <th scope="col">DepartmentId</th>
+        <th scope="col">Department Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <tr th:each="department : ${departments}">
+        <td th:text=${department.id}></td>
+        <td th:text=${department.deptName}></td>
+        <td th:text=${department.description}></td>
+        <td><a th:href="@{'/department/edit/' + ${department.id}}">Edit</a></td>
+        <td><a th:href="@{'/department/delete/' + ${department.id}}">Delete
+        </a></td>
+    </tr>
+    </tr>
+    </tbody>
+
+</table>
+
+<!--<a href="/category/addcategory">Add Category</a>-->
+
+
+
+</body>
+</html>
