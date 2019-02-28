@@ -1,7 +1,9 @@
 package org.launchcode.rewardcenter.controllers;
 
 import org.launchcode.rewardcenter.models.Category;
+import org.launchcode.rewardcenter.models.Department;
 import org.launchcode.rewardcenter.models.data.CategoryDao;
+import org.launchcode.rewardcenter.models.data.DepartmentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,13 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
+    @Autowired
+
+    private DepartmentDao departmentDao;
+
     @RequestMapping(value="")
     public String index(Model model){
-        model.addAttribute("title","Category");
+        model.addAttribute("title","Category Info");
         model.addAttribute("categories",categoryDao.findAll());
        return "category/view";
     }
@@ -61,7 +67,7 @@ public class CategoryController {
     @RequestMapping(value="edit",method = RequestMethod.POST)
     public String processEditForm(@RequestParam int categoryId,
                                   @RequestParam String categoryName,
-                                  @RequestParam boolean deptAllowed){
+                                  @RequestParam(required=false) boolean deptAllowed){
 
         Category category =categoryDao.findById(categoryId).get();
         category.setCategoryName(categoryName);

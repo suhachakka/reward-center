@@ -5,9 +5,10 @@
 <body class="container">
 <nav th:replace="fragments :: navigation"></nav>
         <div class="card-header bg-danger text-white">
-            <h4 class="text-uppercase text-center" th:text="${title}">
-                <!--<h4 >Card details</h4>-->
-            </h4></div>
+            <h4 class="text-uppercase text-center" th:text="${title}"></h4>
+<a href ="/card/addcard" class ="btn btn-primary rounded-0" value="Add">Add card</a></div>
+
+
         <table class="table table-striped table-dark" style="background-color:#A9A9A9; margin-top:0;">
     <thead>
     <tr>
@@ -29,7 +30,7 @@
         <td th:text=${card.id}></td>
         <td th:text=${card.cardName}></td>
         <td th:text=${card.cardBrand}></td>
-        <td th:text=${card.cardNumber}></td>
+        <td th:text=${card.maskCardNumber}></td>
         <td th:text=${card.cardType}></td>
         <td th:text=${card.issuedBank}></td>
         <td th:text=${card.yearMonth}></td>

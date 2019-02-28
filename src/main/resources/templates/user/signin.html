@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class = "container" style="margin-top:30px;">
+<body class = "container-fluid justify-content-center" style="margin-top:30px;">
 <nav class="navbar navbar-default navbar-dark fixed-top" style="background-color: green;" >
-    <a class="navbar-brand" href="/list/base">Reward Center</a></nav>
+    <a class="navbar-brand" href="/user/base">Reward Center</a></nav>
 
-    <form class= "form-container justify-content-md-center" method="post" style="max-width:460px; margin-top:150px;"
+    <form class= "form-container justify-content-md-center"
+          method="post" style="max-width:460px; margin-top:150px;"
           th:object="${signUser}">
     <div class = "header">
         <h2>Reward Center</h2>
@@ -53,8 +54,8 @@
     <button type="submit" class="btn btn-primary" style="float:right;">Forgot password</button>
 
         <div><h1 th:text="${param.q}" class="error">test</h1></div>
-
-    <p>
+        <span th:text="${message}"></span>
+        <p>
         Don't have an account? <a href ="/user/signup">Create One</a>
     </p>
     </form>

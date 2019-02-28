@@ -1,33 +1,38 @@
 package org.launchcode.rewardcenter.models;
 
 
-import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.launchcode.rewardcenter.models.Offer;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.Valid;
+import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
+
 public class Category {
 
-   @Id
-   @GeneratedValue
-   private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    private int id;
 
-   @NotNull
-   @Size(min=1,max=20)
-   private String categoryName;
+    @NotNull
+    @Size(min = 1, max = 20)
+    private String categoryName;
 
-   private boolean deptAllowed;
+    private boolean deptAllowed;
 
-   public Category(){
+    @OneToOne
+    @JoinColumn(name = "dept_id")
+//    List<Offer> offers= new ArrayList<>();
+    private Department department;
 
-   }
+    public Category() {
 
-    public Category(String categoryName,  boolean deptAllowed) {
+    }
+
+    public Category(String categoryName, boolean deptAllowed) {
         this.categoryName = categoryName;
         this.deptAllowed = deptAllowed;
     }
@@ -52,4 +57,24 @@ public class Category {
         this.deptAllowed = deptAllowed;
     }
 
-}
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+    //    public List<Offer> getOffers() {
+//        return offers;
+//    }
+//
+//    public void setOffers(List<Offer> offers) {
+//        this.offers = offers;
+//    }
+
+
+    }
+
+
+
+

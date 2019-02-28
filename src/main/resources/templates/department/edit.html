@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+
+<body class="container-fluid">
+<nav th:replace="fragments :: navigation"></nav>
+<div class="card">
+
+<div class="card-header bg-danger text-white">
+    <h4 class="text-uppercase text-center" th:text="${title}">
+    </h4></div>
+<form method="post" action="/department/edit">
+    <div class="form-row">
+        <div class="col-md-6">
+        <label for="exampleFormControlInput1">Department Name</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1"
+               placeholder="Enter the department name" th:field="*{department.deptName}"/>
+            <span th:errors="*{department.deptName}" class="error"></span>
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  th:field="*{department.description}"></textarea>
+            <span th:errors="*{department.description}" class="error"></span>
+        </div></div>
+
+        <div style="margin-top:15px;">
+            <input type="hidden"  name="deptId" th:value="${deptId}"/>
+
+            <!--<button type="submit" class="btn btn-danger rounded-0" value="cancel">Cancel</button>-->
+            <button type="submit" class="btn btn-primary rounded-0"
+                    value="Edit department">Edit Department</button>
+        </div>
+</form>
+</div>
+</body>
+</html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container-fluid">
 <nav th:replace="fragments :: navigation"></nav>
 
-    <div class="container py-5">
+    <div class="container py-1">
         <!--<h4 class="text-uppercase text-center">your card information </h4>-->
         <div class="card">
             <div class="card-header bg-danger text-white">
@@ -29,7 +29,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <label><b>Card Number</b></label>
-                            <input type="number" placeholder="Enter your Card Number" class="form-control" th:field="*{cardNumber}" />
+                            <input type="text" placeholder="Enter your Card Number" class="form-control" th:field="*{cardNumber}" />
                             <span th:errors="*{cardNumber}" class="error"></span>
 
 

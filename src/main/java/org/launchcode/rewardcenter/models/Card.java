@@ -3,17 +3,19 @@ package org.launchcode.rewardcenter.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigInteger;
-import java.time.Month;
 import java.time.YearMonth;
 
 
 @Entity
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
+
 public class Card {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
@@ -25,8 +27,8 @@ public class Card {
     private String cardBrand;
 
     @NotNull
-    @Digits(integer = 10,fraction = 0)
-    private BigInteger cardNumber;
+    @Size(min=16,max=17)
+    private String cardNumber;
 
     @NotNull
     @Size(min=1,max=20)
@@ -37,16 +39,21 @@ public class Card {
     private String issuedBank;
 
     @Column(name= "Date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+//    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private YearMonth yearMonth;
+
+    @Transient
+    private String maskCardNumber;
+
+    //no-args constructor
 
     public Card() {
 
     }
 
-
-    public Card(String cardName,  String cardBrand,
-            BigInteger cardNumber,  String cardType,
+//parameterized constructor
+    public Card(@NotNull String cardName,  String cardBrand,
+            String cardNumber,  String cardType,
                  String issuedBank, YearMonth yearMonth) {
         this.cardName = cardName;
         this.cardBrand = cardBrand;
@@ -76,11 +83,13 @@ public class Card {
         this.cardBrand = cardBrand;
     }
 
-    public BigInteger getCardNumber() {
+    public String getCardNumber() {
+
         return cardNumber;
     }
 
-    public void setCardNumber(BigInteger cardNumber) {
+
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -107,5 +116,20 @@ public class Card {
 
     public void setYearMonth(YearMonth yearMonth) {
         this.yearMonth = yearMonth;
+    }
+
+    public String getMaskCardNumber() {
+        if( cardNumber!= null && !cardNumber.isEmpty()){
+            int len = cardNumber.length();
+            String maskCardNumber = "******" +
+                    cardNumber.substring(len-4,len);
+
+            return maskCardNumber;
+        }
+        return cardNumber;
+    }
+
+    public void setMaskCardNumber(String maskCardNumber) {
+        this.maskCardNumber = maskCardNumber;
     }
 }

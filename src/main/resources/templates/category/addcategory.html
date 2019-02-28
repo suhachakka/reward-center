@@ -2,15 +2,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container-fluid">
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container py-5">
     <!--<h4 class="text-uppercase text-center">your card information </h4>-->
     <div class="card">
         <div class="card-header bg-danger text-white">
-            <h4 class="text-uppercase text-center" th:text="${title}">
-            </h4></div>
+            <h4 class="text-uppercase text-center" th:text="${title}"></h4>
+        </div>
+
+
         <div class="card-body">
             <form method="post" th:object="${category}">
                 <div class="form-row">

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container-fluid">
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container py-5">
@@ -29,7 +29,7 @@
                                th:field="*{category.deptAllowed}"/>
                         <input name="_deptA" type="hidden" value="on" />
                         <label for="deptA" ><b>Department Allowed</b></label>
-                        <span th:errors="*{category.deptAllowed}" class="error"></span>
+                        <!--<span th:errors="*{category.deptAllowed}" class="error"></span>-->
 
                     </div></div>
                 <div style="margin-top:15px;">

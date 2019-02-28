@@ -6,13 +6,16 @@
 <nav th:replace="fragments :: navigation"></nav>
 <div class="card-header bg-danger text-white">
     <h4 class="text-uppercase text-center" th:text="${title}">
-    </h4></div>
+    </h4>
+    <a href ="/category/addcategory" class ="btn btn-primary rounded-0" value="Add">Add category</a>
+
+</div>
 
 
 <table class="table table-striped table-dark" style="background-color:#F0E68C; color:black;">
     <thead>
     <tr>
-        <th scope="col">cardId</th>
+        <th scope="col">categoryId</th>
         <th scope="col">Category Name</th>
         <th scope="col">Department Applicable</th>
         <th scope="col">Edit</th>
@@ -23,7 +26,10 @@
     <tr>
     <tr th:each="category : ${categories}">
         <td th:text=${category.id}></td>
-        <td th:text=${category.categoryName}></td>
+        <!--<td th:text=${category.categoryName}></td>-->
+        <td><a th:href="'/offer/category/?id=' +${category.id}"
+               th:text="${category.categoryName}" th:value="${category.deptAllowed}"></a>
+        </td>
         <td th:text=${category.deptAllowed}></td>
         <td><a th:href="@{'/category/edit/' + ${category.id}}">Edit</a></td>
         <td><a th:href="@{'/category/delete/' + ${category.id}}">Delete

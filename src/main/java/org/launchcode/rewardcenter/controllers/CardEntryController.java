@@ -1,18 +1,17 @@
 package org.launchcode.rewardcenter.controllers;
 
 
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.launchcode.rewardcenter.models.Card;
 import org.launchcode.rewardcenter.models.User;
 import org.launchcode.rewardcenter.models.data.CardDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.math.BigInteger;
 import java.time.YearMonth;
 
 @Controller
@@ -59,16 +58,18 @@ public class CardEntryController {
     }
 
     @RequestMapping(value = "edit/{cardId}", method = RequestMethod.GET)
-    public String diasplayEditForm( @PathVariable int cardId,Model model) {
-        model.addAttribute("title", " Update the info");
+    public String diasplayEditForm( @PathVariable int cardId, Model model) {
+
+            model.addAttribute("title", " Update the info");
         model.addAttribute("card",cardDao.findById(cardId));
         model.addAttribute("cards", cardDao.findAll());
         return "card/edit";
     }
 
+
     @RequestMapping(value="edit",method = RequestMethod.POST)
     public String processEditForm(@RequestParam int cardId, @RequestParam String cardName, @RequestParam String cardBrand,
-                                  @RequestParam BigInteger cardNumber, @RequestParam String cardType,
+                                  @RequestParam String cardNumber, @RequestParam String cardType,
                                   @RequestParam String issuedBank, @RequestParam YearMonth yearMonth){
 
         Card card =cardDao.findById(cardId).get();

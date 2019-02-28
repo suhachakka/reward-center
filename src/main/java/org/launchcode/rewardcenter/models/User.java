@@ -1,16 +1,15 @@
 package org.launchcode.rewardcenter.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
+
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
     private int id;
 
     @NotNull
@@ -37,6 +36,8 @@ public class User {
     @Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}",message="phone number must be (123)456-7890 format")
 //    @Size(min=10)
     private String phone;
+
+    private String keyword;
 
 //    @NotNull
 //    private Date DOB;
@@ -107,6 +108,13 @@ public class User {
         this.phone = phone;
     }
 
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
 
     private void checkPassword(){
         if (confirm != null && password != null && !password.equals( confirm)){

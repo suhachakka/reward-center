@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -61,6 +59,7 @@ public class UserController {
         }
         userDao.save(user);
 
+
         return "redirect:";
     }
 
@@ -109,9 +108,15 @@ public class UserController {
         user.setPhone(phone);
         userDao.save(user);
         return "redirect:"; /*will redirect to view users  index page request mapping*/
-
-
     }
+
+//    @RequestMapping(value="search", method=RequestMethod.GET)
+//    public String displaySearchForm(@RequestParam String keyword, User user,Model model){
+//        model.addAttribute("title","Search by:" +user.getKeyword());
+//        userDao.searchByKeyword(keyword);
+//        return "user/search";
+//    }
+
     @RequestMapping(value = "signin", method = RequestMethod.GET)
     public String displayLoginForm(Model model) {
         model.addAttribute("title", "Sign in form");
@@ -134,16 +139,20 @@ public class UserController {
             if (matchUser!=null && signUser.getPassword().equals(matchUser.getPassword())) {
                 return "list/base";
             }
-//            model.addAttribute("errors", "Invalid email & password");
-        return "redirect:/user/signin?q=Invalid+Email+Or+Phone";
+            model.addAttribute("message", "Invalid Credentials");
+        return "redirect:/user/signin?q=Invalid+Credentials";
             //return "redirect";
 
         }
 
     @RequestMapping(value = "signout", method = RequestMethod.GET)
-    public String processLogoutForm(HttpServletRequest request) {
-        HttpSession httpSession = request.getSession();
-        httpSession.invalidate();
+    public String processLogoutForm() {
+
         return "user/signout";
 }
+    @RequestMapping(value = "base", method = RequestMethod.GET)
+    public String welcomePage(){
+        return "user/welcome";
+    }
+
 }
