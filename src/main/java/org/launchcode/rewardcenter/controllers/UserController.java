@@ -4,11 +4,13 @@ import org.launchcode.rewardcenter.models.SignUser;
 import org.launchcode.rewardcenter.models.User;
 import org.launchcode.rewardcenter.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -45,7 +47,8 @@ public class UserController {
      */
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public String processUserForm(@ModelAttribute @Valid User user, Errors errors,  Model model) {
+    public String processUserForm(@ModelAttribute @Valid User user, Errors errors,
+                                  Model model, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Sign up");
             return "user/signup";
@@ -57,10 +60,12 @@ public class UserController {
 //            return "user/signup";
             return "redirect:/user/signup?q=User+already+exists";
         }
+
+//        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userDao.save(user);
-
-
-        return "redirect:";
+        session.setAttribute("username",user.getName());
+//        return "redirect:";
+        return "user/welcome";
     }
 
 
@@ -125,7 +130,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "signin", method = RequestMethod.POST)
-    public String processLoginForm(@ModelAttribute @Valid SignUser signUser,Errors errors, Model model) {
+    public String processLoginForm(@ModelAttribute @Valid SignUser signUser,Errors errors, Model model,HttpSession session) {
 
 //        if (!signUser.getEmail().isEmpty() && !signUser.getPassword().isEmpty()) {
        if (errors.hasErrors()) {
@@ -137,17 +142,19 @@ public class UserController {
            matchUser = userDao.findByPhone(signUser.getEmail());
         }
             if (matchUser!=null && signUser.getPassword().equals(matchUser.getPassword())) {
-                return "list/base";
+                session.setAttribute("username",matchUser.getName()+ " " + matchUser.getLastName() );
+                return "user/welcome";
             }
             model.addAttribute("message", "Invalid Credentials");
         return "redirect:/user/signin?q=Invalid+Credentials";
+
             //return "redirect";
 
         }
 
     @RequestMapping(value = "signout", method = RequestMethod.GET)
-    public String processLogoutForm() {
-
+    public String processLogoutForm(HttpSession session) {
+         session.removeAttribute("username");
         return "user/signout";
 }
     @RequestMapping(value = "base", method = RequestMethod.GET)

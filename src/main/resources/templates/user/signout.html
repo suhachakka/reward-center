@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments:: head"></head>
-<body>
-<h1 th:text="${title}">Default title</h1>
-<nav th:replace="fragments:: navigation"></nav>
-<h1>Successfully logged out</h1>
+<body style="background-color: lightblue;">
+
+<nav class="navbar navbar-default navbar-dark fixed-top" style="background-color: green;" >
+    <a class="navbar-brand" href="/user/base">Reward Center</a>
+    <!--<div class="collapse navbar-collapse" id="navbarNav">-->
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+        <ul class="navbar-nav ">
+            <p th:if="${session.username} != null">
+
+            <li class="nav-item active" >
+                <a class="nav-link" href="/user/signin">Sign in </a></li>
+            <li class="nav-item active" style="float:right">
+                <a class="nav-link" href="/user/signout">Sign out </a>
+            </li>
+        </ul></p>
+        <!--</div>-->
+
+
+</nav>
+
+    <p th:if="${session.username} == null" style="margin-bottom:10%">
+    <h1 style="color:blue;"><b>
+        You have been logged out Successfully. See you next time.</b>
+    </h1></p>
 
 </body>
 </html>

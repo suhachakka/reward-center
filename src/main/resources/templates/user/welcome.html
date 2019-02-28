@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments:: head"></head>
-<img>
+<body style="background-color: lightgold;">
 <h1 th:text="${title}">Default title</h1>
 <nav th:replace="fragments:: navigation"></nav>
-<h1>Welcome to reward center</h1>
-<div class="row text-center">
-<img src="‪C:\Users\sures\OneDrive\pictures\RewardCenter.jpg" width="200%" />
-    </img></div>
+<h1 style="text-align:center;"><span th:if="${session.username == null}">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp; Welcome
+<p th:text="${#strings.capitalizeWords(session.username)}" th:unless="${session == null}" style="align:center">
+
+</p></h1>
+<img src="/css/RewardCenter.jpg" width="50%" height="30%" style="align:center;
+margin-left:300px;"/>
+
 
 </body>
 </html>
