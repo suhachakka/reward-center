@@ -2,6 +2,7 @@ package org.launchcode.rewardcenter.controllers;
 
 
 import org.launchcode.rewardcenter.models.Card;
+import org.launchcode.rewardcenter.models.Offer;
 import org.launchcode.rewardcenter.models.User;
 import org.launchcode.rewardcenter.models.data.CardDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.YearMonth;
+import java.util.List;
 
 @Controller
 @RequestMapping("card")
@@ -22,9 +25,15 @@ public class CardEntryController {
     private CardDao cardDao;
 
     @RequestMapping(value = "")
-    public String view(Model model) {
+    public String view(Model model, HttpSession sess) {
         model.addAttribute("title", "Card Data");
-        model.addAttribute("cards", cardDao.findAll());
+        if (sess.getAttribute("sUserId")!=null) {
+            model.addAttribute("cards", cardDao.findByUserId((int) sess.getAttribute("sUserId")));
+        }else{
+//            model.addAttribute("cards", cardDao.findAll());
+            return "user/signin";
+        }
+//        model.addAttribute("cards", cardDao.findAll());
         return "card/view";
     }
 
@@ -38,11 +47,15 @@ public class CardEntryController {
     }
 
     @RequestMapping(value = "addcard", method = RequestMethod.POST)
-    public String processAddcardForm(@ModelAttribute @Valid Card card, Errors errors, Model model) {
+    public String processAddcardForm(@ModelAttribute @Valid Card card, Errors errors,
+                                     Model model,HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Card Details");
             model.addAttribute("cards", cardDao.findAll());
             return "card/addcard";
+        }
+        if(session.getAttribute("sUserId") !=null) {
+            card.setUserId((Integer) session.getAttribute("sUserId"));
         }
         cardDao.save(card);
         return "redirect:";
@@ -84,4 +97,5 @@ public class CardEntryController {
         return "redirect:";
 
     }
+
 }

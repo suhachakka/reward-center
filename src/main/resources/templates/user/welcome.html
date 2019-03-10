@@ -4,13 +4,13 @@
 <body style="background-color: lightgold;">
 <h1 th:text="${title}">Default title</h1>
 <nav th:replace="fragments:: navigation"></nav>
-<h1 style="text-align:center;"><span th:if="${session.username == null}">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp; Welcome
+<h1 style="text-align:center; padding-top:10%;"><span th:if="${session.username == null}">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>Welcome</b>
 <p th:text="${#strings.capitalizeWords(session.username)}" th:unless="${session == null}" style="align:center">
 
 </p></h1>
-<img src="/css/RewardCenter.jpg" width="50%" height="30%" style="align:center;
-margin-left:300px;"/>
+<img src="/css/Reward center1.jpg" width="50%" height="30%" style="align:center;
+margin-left:350px; "/>
 
 
 </body>

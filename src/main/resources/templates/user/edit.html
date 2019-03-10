@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container" style="margin-top:100px;">
 <h1 th:text="${title}">Reward center</h1>
+<nav th:replace="fragments :: navigation"></nav>
 
 <form method="post" style="max-width:300px;" action="/user/edit">
     <div class="form-group">

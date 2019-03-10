@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class = "container-fluid justify-content-center" style="margin-top:30px;">
+<body  style="margin-top:30px; margin-left:35%;">
+<nav th:replace="fragments :: navigation"></nav>
 
-<nav class="navbar navbar-default navbar-dark fixed-top" style="background-color: green;" >
-    <a class="navbar-brand" href="/user/base">Reward Center</a>
-
-</nav>
-
-    <form class= "form-container justify-content-md-center"
+    <form class= "form-container custom-centered"
           method="post" style="max-width:460px; margin-top:150px;"
           th:object="${signUser}">
-    <div class = "header">
+
+        <div class = "header" style=" margin-bottom:5%;" >
         <h2>Reward Center</h2>
 
         <h1 th:text="${title}">Reward center</h1>
     </div>
 
+        <div><strong><h1 th:text="${param.q}" class="error" >test</h1></strong></div>
 
     <div class="form-group row ">
         <label th:for="email" class="col-sm-2 col-form-label" >Email/Phone</label>
@@ -54,34 +52,16 @@
     </div>
     <!--<input type ="submit" value="Sign in" style="background-color:green"/>-->
     <button type="submit" class="btn btn-primary">Sign in</button>
-    <button type="submit" class="btn btn-primary" style="float:right;">Forgot password</button>
+        <!--<button type="submit" class="btn btn-primary" style="float:right;">Forgot password</button>-->
+<a href="/user/recovery" class="btn btn-primary" style="float:right;">Forgot Password</a>
 
-        <div><h1 th:text="${param.q}" class="error">test</h1></div>
-        <span th:text="${message}"></span>
+
+        <!--<span th:text="${message}"></span>-->
         <p>
         Don't have an account? <a href ="/user/signup">Create One</a>
     </p>
     </form>
 
-
-
-    <!--<h1>My Web Page</h1>-->
-
-    <!--<p>Hello everybody!</p>-->
-
-    <!--<p>Translate this page:</p>-->
-
-    <!--<div id="google_translate_element"></div>-->
-
-    <!--<script type="text/javascript">-->
-<!--function googleTranslateElementInit() {-->
-  <!--new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');-->
-<!--}-->
-<!--</script>-->
-
-    <!--<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
-
-    <!--<p>You can translate the content of this page by selecting a language in the select box.</p>-->
 
 </body>
 </html>

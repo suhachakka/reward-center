@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface CardDao extends CrudRepository<Card, Integer> {
+    List<Card> findByUserId(int userId);
 
 }

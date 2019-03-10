@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container-fluid">
+<body style="margin-top:100px;">
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container py-5">
     <!--<h4 class="text-uppercase text-center">your card information </h4>-->
     <div class="card">
-        <div class="card-header bg-danger text-white">
+        <div class="card-header bg-danger text-white" >
             <h4 class="text-uppercase text-center" th:text="${title}">
             </h4></div>
         <div class="card-body">
@@ -18,11 +18,10 @@
                     <div class="col-md-4">
                         <label class="btn btn-success" th:for="card"><b>Cards</b></label>
                         <select name="cardId" itemscope="itemscope">
+                            <option value="">Please choose a cardNumber</option>
                             <option th:each="card : ${cards}"
-                                    th:field="*{offer.card}"
                                     th:text="${card.cardNumber}"
-                                    th:value="${card.id}"
-                                th:selected="${card.id}">
+                                    th:value="${card.id}">
                             </option>
                         </select>
 
@@ -31,7 +30,7 @@
                         <div class="input-group">
 
                             <label class="btn btn-success"><b>CashBack</b>&nbsp;</label>
-                            <input type="number" placeholder="Enter your cash back in $ or %"
+                            <input type="number" step= "any" placeholder="Enter your cash back in $ or %"
                                    class="form-control" th:field="*{offer.cashBack}"/>
                             <span th:errors="*{offer.cashBack}" class="error"></span>
                         </div>
@@ -75,8 +74,8 @@
                         <select name="categoryId" itemscope="itemscope">
                             <option th:each="category : ${categories}"
                                     th:text="${category.categoryName}"
-                                    th:value="${category.id}"
-                            th:selected="(${category.id} == ${category.id})">
+                                    th:value="${category.id}">
+                            <!--th:selected="(${category.id} == ${offer.category.id})">-->
                             </option>
                         </select>
 

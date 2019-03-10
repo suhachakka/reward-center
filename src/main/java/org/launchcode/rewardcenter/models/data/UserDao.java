@@ -13,5 +13,5 @@ public interface UserDao extends CrudRepository<User,Integer> {
 
     User findByPhone(String phone);
 
-//    User searchByKeyword(String keyword);
+    User findByKeyword(String keyword);
 }

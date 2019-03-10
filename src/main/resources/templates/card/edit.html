@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container" style="margin-top:100px;">
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container py-5">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div style="margin-top:15px;">
-                    <!--<button type="submit" class="btn btn-danger rounded-0">Cancel</button>-->
+                    <button type="submit" class="btn btn-danger rounded-0" value="close">Cancel</button>
                     <input type="hidden"  name="cardId" th:value="${cardId}"/>
 
                     <button type="submit" class="btn btn-primary rounded-0">Edit</button>

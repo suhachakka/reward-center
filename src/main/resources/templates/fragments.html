@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title th:text ="${title}">Reward Center</title>
 
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,66 +15,81 @@
 </head>
 <body class="container-fluid" style="max-width:200%">
 <nav th:fragment="navigation">
-    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: green;">
+    <nav class="navbar navbar-expand-xl navbar-dark fixed-top" >
         <nav class = "container-fluid">
+            <ul class="nav navbar-nav navbar-right"><li>
+            <a class="navbar-brand"  style="color:#008B00; " href="/user/base">
+                <!--<b>Reward Center</b>-->
+                <i class="glyphicon glyphicon-credit-card"></i>
+                <img src="/css/Logo1.png" width="50%" height="90%" style="align:left;
+                margin-right:20px;
+                background-color:#20B2AA;" class="image-responsive"/>
 
-        <a class="navbar-brand" href="/user/base/">Reward Center</a>
+
+            </a>
+            </li></ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ">
+        <!--<div class="collapse navbar-collapse" id="navbarNav">-->
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+
+            <ul class="navbar-nav mr-auto">
                 <p th:if="${session.username} != null">
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="/offer/">Offers <!--span class="sr-only">(current)</span--></a>
+                <li class="nav-item active" >
+                    <a class="nav-link" style="color:#DC143C; " href="/offer/">Offers <!--span class="sr-only">(current)</span--></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/department/">Departments </a>
+                    <a class="nav-link" style="color:#DC143C;" href="/department/">Departments </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/category/">Categories </a>
+                    <a class="nav-link"  style="color:#DC143C;" href="/category/">Categories </a>
                 </li>
-                <!--<li class="nav-item dropdown">-->
-                    <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
-                    <!--<div class="dropdown-menu">-->
-                        <!--<a class="dropdown-item" href="#">Action</a>-->
-                        <!--<a class="dropdown-item" href="#">Another action</a>-->
-                        <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                        <!--<div class="dropdown-divider"></div>-->
-                        <!--<a class="dropdown-item" href="#">Separated link</a>-->
-                    <!--</div>-->
-                <!--</li>-->
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/card/">Cards </a>
+                    <a class="nav-link" style="color:#DC143C;" href="/card/">Cards </a>
                 </li>
                   </p>
                 <p th:if="${session.username} == null">
-                <li class="nav-item active" style="float:right">
-                    <a class="nav-link" href="/user/signup">Sign up </a>
+                <li class="nav-item active">
+                    <a class="nav-link" style="color:#8B2323; " href="/user/signup">Sign up </a>
 
                 </li>
-                <li class="nav-item active" >
-                    <a class="nav-link" href="/user/signin">Sign in </a></li>
-                </p>
-
-                <p th:if="${session.username} != null">
-
-                <li class="nav-item active" style="float:right">
-                    <a class="nav-link" href="/user/signout">Sign out </a>
+                <li class="nav-item active">
+                    <a class="nav-link" style="color:#8B2323;" href="/user/signin">Sign in </a>
                 </li>
-                </p>
-                <!--<form class="form-inline my-2 my-lg-0">-->
-                    <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-                    <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-                <!--</form>-->
 
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
-                <!--</li>-->
+                </p>
+
+
+
+            </ul></div>
+
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    <p th:if="${session.username} != null">
+
+                    <li class="nav-item active">
+                    <a class="nav-link" style="color:#8B2323; margin-auto:0;" href="/user/signout"><strong>Sign out</strong> </a>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </p>
+
+            <li class="nav-item active">
+                    <div id="google_translate_element"></div>
+
+                    <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                </li>
             </ul>
-        </div>
+            <!--</div>-->
+            </div>
         </nav></nav></nav>
 </body>
 </html>

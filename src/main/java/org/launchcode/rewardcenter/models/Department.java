@@ -1,16 +1,17 @@
 package org.launchcode.rewardcenter.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
-
 public class Department {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name="native",strategy = "native")
     private int id;
 
     @NotNull

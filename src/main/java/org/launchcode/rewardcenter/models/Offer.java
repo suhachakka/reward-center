@@ -1,4 +1,5 @@
 package org.launchcode.rewardcenter.models;
+import org.hibernate.annotations.GenericGenerator;
 import org.launchcode.rewardcenter.models.Card;
 import org.launchcode.rewardcenter.models.Category;
 import org.launchcode.rewardcenter.models.Department;
@@ -9,11 +10,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
 public class Offer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name="native",strategy = "native")
     //@GeneratedValue(strategy = GenerationType.AUTO)
 
     private int id;
@@ -22,7 +23,6 @@ public class Offer {
     private double qualified_amt;
 
     @NotNull
-    @NumberFormat
     private double cashBack ;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
@@ -35,6 +35,8 @@ public class Offer {
     private String cashMode;
 
     private int totalPages;
+
+    private int userId;
 
     @ManyToOne
     private Category category;
@@ -145,6 +147,14 @@ public class Offer {
     }
     public void setTotalPages(int totalPages){
         this.totalPages=totalPages;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

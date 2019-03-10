@@ -15,9 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping("offer")
@@ -38,13 +39,18 @@ public class OfferController {
 
     @RequestMapping(value = "")
     public String index(Model model,
-                        @RequestParam(defaultValue="0") int page) {
+                        @RequestParam(defaultValue="0") int page, HttpSession sess) {
         model.addAttribute("title", "Offers");
 //        model.addAttribute("offer",offerDao.findAll(new PageRequest(page,4)));
 //        model.addAttribute("currentPage",page);
-        model.addAttribute("offers", offerDao.findAll());
-
-        return "offer/view";
+//        model.addAttribute("offers", offerDao.findAll());
+        if (sess.getAttribute("sUserId")!=null) {
+            model.addAttribute("offers", offerDao.findByUserId((int) sess.getAttribute("sUserId")));
+        }else{
+//            model.addAttribute("offers", offerDao.findAll());
+            return "user/signin";
+        }
+            return "offer/view";
     }
 
 
@@ -52,7 +58,7 @@ public class OfferController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Offers");
         model.addAttribute(new Offer());
-        model.addAttribute("offers", offerDao.findAll());
+//        model.addAttribute("offers", offerDao.findAll());
         model.addAttribute("departments", departmentDao.findAll());
         model.addAttribute("cards", cardDao.findAll());
         model.addAttribute("categories", categoryDao.findAll());
@@ -64,29 +70,29 @@ public class OfferController {
                                        @RequestParam int deptId,
                                        @RequestParam int cardId,
                                        @RequestParam int categoryId,
-                                       Model model) {
+                                       Model model, HttpSession session) {
 
         if (errors.hasErrors()) {
             model.addAttribute("departments", departmentDao.findAll());
-            model.addAttribute("cards", cardDao.findAll());
-            model.addAttribute("categories", categoryDao.findAll());
+            model.addAttribute("cards",cardDao.findAll());
+        model.addAttribute("categories", categoryDao.findAll());
             model.addAttribute("offers", offerDao.findAll());
 
             return "offer/addoffer";
         }
-        model.addAttribute("offer",offer);
+//        model.addAttribute("offer",offer);
         Department department = departmentDao.findById(deptId).get();
         offer.setDepartment(department);
 
         Card card = cardDao.findById(cardId).get();
         offer.setCard(card);
-        offerDao.save(offer);
 
         Category category = categoryDao.findById(categoryId).get();
         offer.setCategory(category);
+        if(session.getAttribute("sUserId") !=null) {
+            offer.setUserId((Integer) session.getAttribute("sUserId"));
+        }
         offerDao.save(offer);
-
-
         return "redirect:";
     }
 
@@ -101,12 +107,14 @@ public class OfferController {
 
     @RequestMapping(value = "edit/{offerId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int offerId) {
+        model.addAttribute("title","Edit the offer");
         model.addAttribute("offer", offerDao.findById(offerId));
+        //System.out.println(offerDao.findById(offerId).toString());
         model.addAttribute("offers",offerDao.findAll());
         model.addAttribute("cards",cardDao.findAll());
-        model.addAttribute("departments",departmentDao.findAll());
+        model.addAttribute("departments", departmentDao.findAll());
 
-       model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("categories", categoryDao.findAll());
 
         return "offer/edit";
 
@@ -118,6 +126,7 @@ public class OfferController {
                                   @RequestParam(defaultValue = "none") double cashBack, @RequestParam String ExpiryDate,
                                   @RequestParam String CouponCode, @RequestParam String cashMode,
                                   @RequestParam int categoryId,@RequestParam int deptId,@RequestParam int cardId) throws ParseException {
+
 
         Offer offer = offerDao.findById(offerId).get();
         Category category = categoryDao.findById(categoryId).get();
@@ -153,5 +162,6 @@ public class OfferController {
 //        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true)); //Trim strings
 //        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mma z");
 //    }
+
 }
 

@@ -1,15 +1,17 @@
 package org.launchcode.rewardcenter.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
 
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name="native",strategy = "native")
     private int id;
 
     @NotNull
@@ -37,21 +39,21 @@ public class User {
 //    @Size(min=10)
     private String phone;
 
-    private String keyword;
 
-//    @NotNull
-//    private Date DOB;
+    private String sec_question;
 
     public User() {
 
     }
-    public User(String name,String lastName,String password, String confirm, String email, String phone){
+    public User(String name,String lastName,String password, String confirm,
+                String email, String phone,String sec_question){
         this.name = name;
         this.lastName =lastName;
         this.password =password;
         this.confirm = confirm;
         this.email= email;
         this.phone = phone;
+        this.sec_question=sec_question;
     }
 
     public int getId() {
@@ -108,12 +110,13 @@ public class User {
         this.phone = phone;
     }
 
-    public String getKeyword() {
-        return keyword;
+
+    public String getSec_question() {
+        return sec_question;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    public void setSec_question(String sec_question) {
+        this.sec_question = sec_question;
     }
 
     private void checkPassword(){

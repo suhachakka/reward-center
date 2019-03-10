@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
-<body class="container-fluid">
+<body style="margin-top:50px; margin-bottom:30px;">
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container py-5">
     <!--<h4 class="text-uppercase text-center">your card information </h4>-->
     <div class="card">
-        <div class="card-header bg-danger text-white">
+        <div class="card-header bg-success text-white">
             <h4 class="text-uppercase text-center" th:text="${title}">
             </h4></div>
         <div class="card-body">
@@ -82,8 +82,8 @@
                         <select name="deptId">
                             <option th:each="department : ${departments}"
                                     th:text="${department.deptName}"
-
                                     th:value="${department.id}"></option>
+                            <option value="">All</option>
                         </select>
 
                     </div>

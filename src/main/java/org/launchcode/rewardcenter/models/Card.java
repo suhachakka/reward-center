@@ -1,19 +1,21 @@
 package org.launchcode.rewardcenter.models;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigInteger;
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
-
 public class Card {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name="native",strategy = "native")
 
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -39,12 +41,13 @@ public class Card {
     private String issuedBank;
 
     @Column(name= "Date")
-//    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private YearMonth yearMonth;
 
     @Transient
     private String maskCardNumber;
 
+    private int userId;
     //no-args constructor
 
     public Card() {
@@ -118,6 +121,7 @@ public class Card {
         this.yearMonth = yearMonth;
     }
 
+
     public String getMaskCardNumber() {
         if( cardNumber!= null && !cardNumber.isEmpty()){
             int len = cardNumber.length();
@@ -131,5 +135,13 @@ public class Card {
 
     public void setMaskCardNumber(String maskCardNumber) {
         this.maskCardNumber = maskCardNumber;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 }

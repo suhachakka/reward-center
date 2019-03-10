@@ -8,10 +8,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 public interface OfferDao extends CrudRepository<Offer,Integer> {
     Page<Offer> findAll(Pageable pageable);
-
+List<Offer> findByUserId(int userId);
 }

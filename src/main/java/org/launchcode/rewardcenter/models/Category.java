@@ -1,6 +1,7 @@
 package org.launchcode.rewardcenter.models;
 
 
+import org.hibernate.annotations.GenericGenerator;
 import org.launchcode.rewardcenter.models.Offer;
 
 import javax.persistence.*;
@@ -9,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "MY_SEQUENCE", allocationSize = 1)
 
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name="native",strategy = "native")
     private int id;
 
     @NotNull
@@ -23,10 +24,10 @@ public class Category {
 
     private boolean deptAllowed;
 
-    @OneToOne
-    @JoinColumn(name = "dept_id")
-//    List<Offer> offers= new ArrayList<>();
-    private Department department;
+//    @OneToOne
+//    @JoinColumn(name = "dept_id")
+//   List<Offer> offers= new ArrayList<>();
+//    private Department department;
 
     public Category() {
 
@@ -57,13 +58,13 @@ public class Category {
         this.deptAllowed = deptAllowed;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
+//    public Department getDepartment() {
+//        return department;
+//    }
+//
+//    public void setDepartment(Department department) {
+//        this.department = department;
+//    }
     //    public List<Offer> getOffers() {
 //        return offers;
 //    }
