@@ -1,13 +1,17 @@
 body {
     font-family: sans-serif;
     font-size:15px;
-    background-color:lightblue;
+    background-color:#8B814C;
+
     }
 
 nav {
-    margin-bottom: 20px;
     color:blue;
     border:margin-end:600px;
+    background-color:#FFEC8B;
+    color:#008B00;
+
+
 }
 
 h1{
@@ -41,9 +45,10 @@ color:red;
 max-width:100%;
 height:100%;
 
+
 color:white;
 margin-top:50px auto 0px;
-margin-bottom:10px;
+margin-bottom:100px;
 background:rgb(30, 144, 255);
 text-align:center;
 border:1px solid #B0C4DE;
@@ -62,4 +67,7 @@ input[type="checkbox"] {
   border: 0px;
   width: 100%;
   height: 2em;
+}
+.lang{
+float-right;
 }
